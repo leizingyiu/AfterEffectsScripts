@@ -15,9 +15,9 @@
 Pls copy the jsx file into the ScriptUI Panels folder.
 
 - Windows  
-  ...Program Files¥Adobe After Effects <version>¥Support Files¥Scripts¥ScriptUI Panels
+  ...Program Files / Adobe After Effects <version> / Support Files / Scripts / ScriptUI Panels
 - Mac  
-  ...Applications/Adobe After Effects <version>/Scripts/ScriptUI Panels
+  ...Applications / Adobe After Effects <version> / Scripts / ScriptUI Panels
   If AfterEffects is already running, please restart it.
 
 <br/><br/><hr><br/>
