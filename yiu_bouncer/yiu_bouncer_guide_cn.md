@@ -30,31 +30,31 @@
    ![](https://pic.leizingyiu.net/20210912121528.png)
 
 2. 点击路径属性用的弹性工具按钮
-   ![](http://pic.leizingyiu.net/20210912122801.png)
+   ![](https://pic.leizingyiu.net/20210912122801.png)
 
 3. 修改路径时，先关闭路径属性的表达式开关
-   ![](http://pic.leizingyiu.net/20210912123014.png)
+   ![](https://pic.leizingyiu.net/20210912123014.png)
 
 ### 非路径弹性
 
 1. 选中带数字的属性，如 位置 、 透明度 、 缩放 等
-   ![](http://pic.leizingyiu.net/20210912123212.png)
+   ![](https://pic.leizingyiu.net/20210912123212.png)
 
 2. 点击非路径用的弹性工具按钮
-   ![](http://pic.leizingyiu.net/20210912123301.png)
+   ![](https://pic.leizingyiu.net/20210912123301.png)
 
 ## 调整参数说明 —— 回弹
 
 ### 频率 （路径回弹 / 万能回弹
 
 通过调节频率，可以修改每秒回弹次数
-![](http://pic.leizingyiu.net/20210912130202.png)
+![](https://pic.leizingyiu.net/20210912130202.png)
 
 ### 衰减 （路径回弹 / 万能回弹
 
 通过调节衰减，可以修改每次回弹比上次减少的幅度
-![](http://pic.leizingyiu.net/20210912130439.png)
-![](http://pic.leizingyiu.net/20210912130529.png)
+![](https://pic.leizingyiu.net/20210912130439.png)
+![](https://pic.leizingyiu.net/20210912130529.png)
 
 ### 取样时间 （路径回弹
 
@@ -90,18 +90,18 @@
 物体碰撞时，每次反弹的衰减幅度符合指数函数曲线，  
 默认约为自然对数的底数 0.7 ，
 调整此属性可调整衰减速度；
-![](http://pic.leizingyiu.net/20210912132904.png)
-![](http://pic.leizingyiu.net/20210912132945.png)
+![](https://pic.leizingyiu.net/20210912132904.png)
+![](https://pic.leizingyiu.net/20210912132945.png)
 
 ### 重力
 重力控制每次弹起的高度，重力越小，弹起高度越高，每次弹起需要的时间越长。
-![](http://pic.leizingyiu.net/20210912133107.png)
-![](http://pic.leizingyiu.net/20210912133153.png)
+![](https://pic.leizingyiu.net/20210912133107.png)
+![](https://pic.leizingyiu.net/20210912133153.png)
 
 ### 最大碰撞次数
 每次产生弹性时的最大碰撞次数。
-![](http://pic.leizingyiu.net/20210912134531.png)
-![](http://pic.leizingyiu.net/20210912134557.png)
+![](https://pic.leizingyiu.net/20210912134531.png)
+![](https://pic.leizingyiu.net/20210912134557.png)
 
 ### 取样时间
 与回弹中的取样时间相似，可调节碰撞时的速度值和速度方向

@@ -33,21 +33,21 @@ Please delete the jsx file from ScriptUI panels
 ### for path
 
 1. Select path properties
-   ![](https://pic.leizingyiu.net/20210912121528.png)
+   ![](https://pic.leizingyiu.net/20210912143831.png)
 
 2. Click the elastic tool button for path properties
-   ![](http://pic.leizingyiu.net/20210912122801.png)
+   ![](https://pic.leizingyiu.net/20210912144322.png)
 
 3. When modifying the path, first turn off the expression switch of the path property
-   ![](http://pic.leizingyiu.net/20210912123014.png)
+   ![](https://pic.leizingyiu.net/20210912144457.png)
 
 ### for other properties
 
 1. Select properties with numbers, such as position, transparency, zoom, etc.
-   ![](http://pic.leizingyiu.net/20210912123212.png)
+   ![](https://pic.leizingyiu.net/20210912144657.png)
 
 2. Click the elastic tool button for non-path
-   ![](http://pic.leizingyiu.net/20210912123301.png)
+   ![](https://pic.leizingyiu.net/20210912144808.png)
 
 <br/><br/><hr><br/>
 
@@ -56,13 +56,12 @@ Please delete the jsx file from ScriptUI panels
 ### freq : frequency（ overshoot for path / overshoot
 
 By adjusting the frequency, the number of rebounds per second can be modified
-![](http://pic.leizingyiu.net/20210912130202.png)
+![](https://pic.leizingyiu.net/20210912145040.png)
 
 ### decay : Attenuation coefficient（ overshoot for path / overshoot
 
 By adjusting the decay, you can modify the magnitude of the decrease in each rebound compared to the last time
-![](http://pic.leizingyiu.net/20210912130439.png)
-![](http://pic.leizingyiu.net/20210912130529.png)
+![](https://pic.leizingyiu.net/20210912145329.png)
 
 ### deltaT : Sampling time（ overshoot for path
 
@@ -99,20 +98,19 @@ Smoothing coefficient switch, convenient to directly observe the comparison befo
 When an object collides, the attenuation amplitude of each rebound conforms to the exponential function curve,
 The default is about the base of natural logarithm 0.7,
 Adjust this property to adjust the attenuation speed;
-![](http://pic.leizingyiu.net/20210912132904.png)
-![](http://pic.leizingyiu.net/20210912132945.png)
+![](https://pic.leizingyiu.net/20210912145611.png)
 
 ### g : Gravity
 
 Gravity controls the height of each bounce. The smaller the gravity, the higher the bounce height, and the longer it takes for each bounce.
-![](http://pic.leizingyiu.net/20210912133107.png)
-![](http://pic.leizingyiu.net/20210912133153.png)
+
+![](https://pic.leizingyiu.net/20210912145754.png)
 
 ### nMax : Maximum number of collisions
 
 The maximum number of collisions each time the elasticity is generated.
-![](http://pic.leizingyiu.net/20210912134531.png)
-![](http://pic.leizingyiu.net/20210912134557.png)
+
+![](https://pic.leizingyiu.net/20210912145925.png)
 
 ### deltaTime : Sampling time
 
