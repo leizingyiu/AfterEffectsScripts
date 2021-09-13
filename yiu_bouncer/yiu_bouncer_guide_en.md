@@ -68,12 +68,14 @@ By adjusting the decay, you can modify the decrease magnitude each rebound compa
 Since there is no velocity in the path property expression, when calculating each path point, it is necessary to obtain the position of the point of a short time before the key frame, and this short time is the sampling time.
 By adjusting the sampling time,you can obtain a slightly different initial velocity value and initial direction ;
 The shorter the sampling time, the closer to the instantaneous speed of the key frame moment.
+![](http://pic.leizingyiu.net/d_k_change_en.gif)
 
 ## k : Exaggeration coefficient（ overshoot for path
 
 This property defaults to the inverse of the sampling time,
 For example, the sampling time is 1/1000, and the exaggeration coefficient is 1000;
 In some cases, more exaggerated elasticity is required, you can modify this coefficient to enlarge the elastic effect direct.
+![](http://pic.leizingyiu.net/d001_k_change_en.gif)
 
 ## easeK : Smoothing factor （ overshoot for path
 
@@ -81,12 +83,10 @@ Since the elastic expression is adding an additional elastic value to the curren
 It is possible that when approaching the next key frame, the position of the path point deviates relatively far, which may cause a freeze before the next key frame.
 This property is used for smooth the current elasticity to the next key frame;
 
-/_TODO_/
-
-The smoothing method is several powers of the trigonometric function cos;
-The property itself has been enlarged by 100 times, that is, when 100 is filled in, the property is automatically calculated as 1;
-The smoothing method is the 1st power of the cos function;
-The larger the value, the later the transition to the next key frame, the longer the elastic effect will be.
+The smoothing method is easeK powers of time between 2 keyframes;
+The property itself has been enlarged by 100 times, when 100 is filled in, the property is automatically calculated as 1;
+The larger value, the later transition to the next keyframe, the longer elastic effect will be.
+![](https://pic.leizingyiu.net/easeK_change.gif)
 
 ## easeBoo（ overshoot for path
 
@@ -122,10 +122,11 @@ Similar to the sampling time in overshoot,you can adjust the speed value and spe
 
 # Version historey
 
-| version | date | directions
-|
-| ------- | ---------- | -------------------------------------------------------------------------------- |
-| v1.0 | 2021-09-12 | Release scripts to support the rebound and rebound of paths and digital attributes; when the path rebounds, it supports smoothing to the next key frame. |
+| version | date       | directions                                                                                                                                               |
+| ------- | ---------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| v1.0    | 2021-09-12 | Release scripts to support the rebound and rebound of paths and digital attributes; when the path rebounds, it supports smoothing to the next key frame. |
+
+<hr>
 
 yiu_bouncer  
 Version: 1.0  
