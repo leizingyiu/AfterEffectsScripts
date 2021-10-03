@@ -15,18 +15,54 @@ document.querySelector('#lang [data-lang=' + lang + ']').classList.add('active')
 })
 
 
+
+
+
+
+// 选择需要观察变动的节点
+const targetNode = document.querySelector('body');
+
+// 观察器的配置（需要观察什么变动）
+const config = { attributes: true, childList: true, subtree: true };
+
+// 当观察到变动时执行的回调函数
+const callback = function (mutationsList, observer) {
+    // Use traditional 'for loops' for IE 11
+    for (let mutation of mutationsList) {
+        if (mutation.type === 'childList') {
+            //console.log('A child node has been added or removed.');
+
+            mainSetting();
+
+        }
+        else if (mutation.type === 'attributes') {
+            // console.log('The ' + mutation.attributeName + ' attribute was modified.');
+        }
+
+    }
+};
+
+// 创建一个观察器实例并传入回调函数
+const observer = new MutationObserver(callback);
+
+// 以上述配置开始观察目标节点
+observer.observe(targetNode, config);
+
+
+loadItems();
+
 function loadItems() {
 
     fetch('..\\items.json')
         .then(response => response.json())
         .then(json => getItems(json))
         .then(function () {
-            mainSetting();
+            //mainSetting();
 
             console.log('last step of loadItems');
         })
 }
-loadItems();
+
 
 async function getItems(json) {
 
@@ -35,9 +71,9 @@ async function getItems(json) {
             getItem(item)
         });
     })
-    items[items.length] = await new Promise((resolve, reject) => {
-        mainSetting();
-    })
+    // items[items.length] = await new Promise((resolve, reject) => {
+    //     mainSetting();
+    // })
     await Promise.all(items)
     //.then(mainSetting);
 
@@ -67,7 +103,7 @@ async function getItem(name) {
                                         <a class="download" href="javascript:void 0;">download</a>
                                     </div>
                                 </dt>
-                                <dd><img src='`+ json.scriptDescribe.img + `' /></dd>
+                                <dd>`+ (Object.keys(json.scriptDescribe).indexOf('img') != -1 ? (`<img src='` + json.scriptDescribe.img + `' />`) : '') + `</dd>
 
                             </dl>
                             <ul class="scriptVersions">
@@ -77,7 +113,7 @@ async function getItem(name) {
 
             json.scriptVersions.map(function (ver) {
                 var verli = document.createElement('li');
-                verli.innerHTML = ` <dl class="scriptVersion panel">
+                verli.innerHTML = ` <dl class="scriptVersion panel"` + (Object.keys(ver).indexOf('date') != -1 ? (`data-date='` + ver.date + `'`) : '') + `>
                                         <dt>
                                             <h1>`+ ver.h1 + `</h1>
                                             <div>
@@ -87,14 +123,12 @@ async function getItem(name) {
                                                 <a class="download" href="javascript:void 0 ;">download</a>
                                             </div>
                                         </dt>
-                                        <dd>
-                                            <img src="`+ ver.img + `" alt="">
-                                        </dd>
+                                        <dd>`+ (Object.keys(ver).indexOf('img') != -1 ? (`<img src='` + ver.img + `' />`) : '') + `</dd>
                                     </dl>`;
                 li.querySelector('.scriptVersions').appendChild(verli);
             })
             var latestLi = document.createElement('li');
-            latestLi.innerHTML = ` <dl class="scriptVersion panel">
+            latestLi.innerHTML = ` <dl class="scriptVersion panel" ` + (Object.keys(json.scriptDescribe.version).indexOf('date') != -1 ? (`data-date='` + json.scriptDescribe.version.date + `'`) : '') + ` >
                                 <dt>
                                     <h1>latest: `+ json.scriptDescribe.version.h1 + `</h1>
                                     <div>
@@ -104,9 +138,7 @@ async function getItem(name) {
                                         <a class="download" href="javascript:void 0 ;">download</a>
                                     </div>
                                 </dt>
-                                <dd>
-                                    <img src="`+ json.scriptDescribe.version.img + `" alt="">
-                                </dd>
+                                <dd>`+ (Object.keys(json.scriptDescribe.version).indexOf('img') != -1 ? (`<img src='` + json.scriptDescribe.version.img + `' />`) : '') + `</dd>
                             </dl>`;
             li.querySelector('.scriptVersions').insertBefore(latestLi, li.querySelector('.scriptVersions').firstChild);
 
@@ -115,18 +147,12 @@ async function getItem(name) {
     //.then(mainSetting)
 }
 
-// async function getItem(name) {
-//     let response = await fetch('..\\' + name + '\\item.json');
-//     if (response.status >= 200 && response.status < 300) {
-//         return await response.text();
-//     } else {
-//         throw new Error(response.status);
-//     }
-// }
+
+
 
 function mainSetting() {
 
-    console.trace()
+    //console.trace()
 
 
     var downloadClick = false;
@@ -139,6 +165,8 @@ function mainSetting() {
 
     [...document.querySelectorAll('.scriptDescribe')].map(function (dom) {
         // console.log('map scriptDescribe');
+
+        if (dom.getAttribute('alreadySet') == 'true') { return void 0; }
 
         var itemInfo = getItemInfo(dom, '', 'detail_' + lang + '.md', false);
         var itemName = itemInfo.itemName,
@@ -157,10 +185,14 @@ function mainSetting() {
                 downloadClick = false;
             }
         }, false);
+
+        dom.setAttribute('alreadySet', 'true');
     });
 
     [...document.querySelectorAll('.readmore')].map(function (dom) {
         // console.log('map readmore');
+
+        if (dom.getAttribute('alreadySet') == 'true') { return void 0; }
 
         var itemInfo = getItemInfo(dom, '', 'detail_' + lang + '.md', true);
         var itemName = itemInfo.itemName,
@@ -184,9 +216,13 @@ function mainSetting() {
                 downloadClick = false;
             }
         }, false);
+
+        dom.setAttribute('alreadySet', 'true');
     });
 
     [...document.querySelectorAll('.download')].map(function (dom) {
+
+        if (dom.getAttribute('alreadySet') == 'true') { return void 0; }
 
         var itemInfo = getItemInfo(dom, 'download', 'downloadList.json', true);
         var itemName = itemInfo.itemName,
@@ -231,34 +267,40 @@ function mainSetting() {
 
         }, false);
 
-
+        dom.setAttribute('alreadySet', 'true');
     });
 
 }
 
 function getItemInfo(dom, targetFolderName, targetFileName, hideBoo) {
 
-    console.trace()
+    //console.trace()
 
-    let domOrigin = dom;
+    let parDom = dom;
     let itemVersion = 'latest';
-    while (dom.classList.value.indexOf('item') == -1) {
-        dom = dom.parentElement;
-        if (dom.classList.value.indexOf('scriptVersion') != -1) {
-            itemVersion = dom.querySelector('h1').innerText;
+
+    while (parDom.classList.value.indexOf('item') == -1) {
+        parDom = parDom.parentElement;
+        if (parDom.classList.value.indexOf('scriptVersion') != -1 && itemVersion == 'latest') {
+            itemVersion = parDom.querySelector('h1').innerText;
         }
-        if (dom.localName == 'body') {
+        if (parDom.localName == 'body') {
             break;
         }
     }
 
 
     //console.log(domOrigin, dom);
-    var itemName = dom.querySelector('.scriptDescribe h1').innerText;
+    var itemName = parDom.querySelector('.scriptDescribe h1').innerText;
 
-    var itemTargetPath = '../' + itemName + (itemVersion == 'latest' ? '' : '/versions/' + itemVersion) + '/' + targetFolderName + '/';
+    itemVersion = itemVersion.indexOf('latest') != -1 ? 'latest' : itemVersion;
 
-    dom = domOrigin;
+    var itemTargetPath = '../' + itemName + (itemVersion.indexOf('latest') != -1 ? '' : '/versions/' + itemVersion) + '/' + targetFolderName + '/';
+
+    console.log(itemVersion, itemTargetPath);
+
+
+
 
     try {
         fetch(itemTargetPath + targetFileName)

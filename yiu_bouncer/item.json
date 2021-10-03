@@ -2,25 +2,28 @@
     "scriptDescribe": {
         "h1": "yiu_bouncer",
         "span": {
-            "cn": " 为选定的属性产生弹性，包括普通的数字属性，或者路径属性。",
-            "en": "Create flexibility for selected attributes, including common numeric attributes, or path attributes."
+            "cn": " 为选定属性的关键帧动画产生弹性，包括普通的数字属性，或者路径属性。",
+            "en": "Create elasticity for the keyframe animation of selected properties, including common numeric properties, or path properties."
         },
-        "img": "https://via.placeholder.com/1600x900.png",
-        "version":{
+        "img": "https://pic.leizingyiu.net/00_yiu_bouncer_cover.png",
+        
+        "version": {
             "h1": "v1.1",
             "span": {
                 "cn": "路径反弹以及回弹，都支持平滑到下一关键帧",
-                "en": "Release scripts to support the rebound and rebound of paths and digital    attributes;    when    the path rebounds, it supports smoothing to the next key frame"
+                "en": "Path bounce and rebound, both support smoothing to the next key frame"
             },
-            "img": "https://via.placeholder.com/160x90.png"
+            "img": "https://pic.leizingyiu.net/yiu_bouncer_v1.1_easeK.png",
+            "date": "2021-09-22"
         }
     },
     "scriptVersions": [{
         "h1": "v1.0",
         "span": {
             "cn": "发布脚本，支持路径和数字属性的回弹和回弹； 路径回弹时，支持平滑到下一关键帧",
-            "en": "Release scripts to support the rebound and rebound of paths and digital    attributes;    when    the path rebounds, it supports smoothing to the next key frame"
+            "en": "Release scripts to support the rebound and rebound of paths and digital attributes; when the path rebounds, support smoothing to the next key frame"
         },
-        "img": "https://via.placeholder.com/160x90.png"
+        "//img": "https://via.placeholder.com/160x90.png",
+        "date": "2021-09-12"
     }]
 }

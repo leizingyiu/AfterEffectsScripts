@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>After Effects Scripts By Leizingyiu</title>
-    <link rel="stylesheet" type="text/css" href="https://leizingyiu.net/css/tbDefaultCss.min.css" />
+    <link rel="stylesheet" type="text/css" href="http://www.leizingyiu.net/css/tbDefaultCss.min.css" />
     <link rel="stylesheet" type="text/css" href='./css/style.css' />
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/1.3.8/FileSaver.js"></script>
@@ -29,31 +29,15 @@
     </header>
     <ul id='items'>
     </ul>
-    <footer></footer>
+    <footer>
+
+        <dl style='display: flex;    justify-content: space-between;'>
+            <dt>Designed & Powerd by Leizingyiu | Copyright© Leizingyiu.net</dt>
+            <dd><a href='https://beian.miit.gov.cn/#/'>粤ICP备2020086793号</a></dd>
+        </dl>
+    </footer>
 
     <script src="./script/script.js"></script>
-
-    <script>
-        fetch('https://www.leizingyiu.net/page/footer.html', {
-            method: 'GET',
-            mode: 'cors',
-        }).then(function (response) {
-            return response.text();
-        }).then(function (resText) {
-            document.querySelector('footer').innerHTML = resText;
-        }).then(function () {
-
-            fetch('page/footer_links.json').then(function (response) {
-                return response.json();
-            }).then(function (resJson) {
-                Object.keys(resJson).map(function (k) {
-                    document.querySelector('#' + k.replace(/\[[^\]]*\]/, '')).innerHTML += '<tr' + ' class="inside" ' + '><td><b>' + k.match(/\[[^\]]*\]/) + '</b></td></tr>';
-                    document.querySelector('#' + k.replace(/\[[^\]]*\]/, '')).width = (100 - 100 / Object.keys(resJson[k]).length) + '%'
-                    Object.keys(resJson[k]).map(l => document.querySelector('#' + k.replace(/\[[^\]]*\]/, '') + ' .inside').innerHTML += '<td><a href="' + resJson[k][l] + '">' + l + '</a></td>');
-                })
-            });
-        });
-    </script>
 
 
 </body>

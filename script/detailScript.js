@@ -9,7 +9,7 @@ const jsonToSearch = json => JSON.stringify(json).replace(/(^\{)|(\}$)/g, '').re
 var lang = Object.keys(searchJson).indexOf('lang') != -1 ? searchJson.lang : 'cn';
 var detail = Object.keys(searchJson).indexOf('detail') != -1 ? searchJson.detail : 'index';
 var version = Object.keys(searchJson).indexOf('version') != -1 ? searchJson.version : '';
-
+version = version.indexOf('latest') != -1 ? '' : version;
 
 var errorText = {
     "mdError": {
@@ -53,7 +53,7 @@ function getDescribe(name, version = '') {
                                 </div>
                             </dt>
                             <dd><img src='`+ json.scriptDescribe.img + `' /></dd>
-                            <a onclick='window.history.go(-1)' style='cursor:pointer;font-size:2rem;font-weight:200;text-decoration:underline'> ⬅️ back</a>
+                            <a onclick='window.history.go(-1)' style='cursor:pointer;font-size:1.5rem;font-weight:200;text-decoration:underline'> ⬅️ back</a>
                             `;
                 document.getElementById('item').appendChild(dl);
                 return json;
