@@ -1,6 +1,6 @@
 ---
 Created: "2021/09/12 11:41:01"
-Last modified: "2021/10/03 13:51:02"
+Last modified: "2021/10/03 14:20:55"
 ---
 
 # yiu_bouncer.jsx
@@ -32,34 +32,34 @@ Last modified: "2021/10/03 13:51:02"
 ### 路径弹性
 
 1. 选中路径属性
-   ![](https://pic.leizingyiu.net/20210912121528.png)
+   ![](https://leizingyiu.github.io/AfterEffectsScripts/yiu_bouncer/mdFile/20210912121528.png)
 
 2. 点击路径属性用的弹性工具按钮
-   ![](https://pic.leizingyiu.net/20210912122801.png)
+   ![](https://leizingyiu.github.io/AfterEffectsScripts/yiu_bouncer/mdFile/20210912122801.png)
 
 3. 修改路径时，先关闭路径属性的表达式开关
-   ![](https://pic.leizingyiu.net/20210912123014.png)
+   ![](https://leizingyiu.github.io/AfterEffectsScripts/yiu_bouncer/mdFile/20210912123014.png)
 
 ### 非路径弹性
 
 1. 选中带数字的属性，如 位置 、 透明度 、 缩放 等
-   ![](https://pic.leizingyiu.net/20210912123212.png)
+   ![](https://leizingyiu.github.io/AfterEffectsScripts/yiu_bouncer/mdFile/20210912123212.png)
 
 2. 点击非路径用的弹性工具按钮
-   ![](https://pic.leizingyiu.net/20210912123301.png)
+   ![](https://leizingyiu.github.io/AfterEffectsScripts/yiu_bouncer/mdFile/20210912123301.png)
 
 ## 调整参数说明 —— 回弹
 
 ### 频率 （路径回弹 / 万能回弹
 
 通过调节频率，可以修改每秒回弹次数
-![](https://pic.leizingyiu.net/20210912130202.png)
+![](https://leizingyiu.github.io/AfterEffectsScripts/yiu_bouncer/mdFile/20210912130202.png)
 
 ### 衰减 （路径回弹 / 万能回弹
 
 通过调节衰减，可以修改每次回弹比上次减少的幅度
-![](https://pic.leizingyiu.net/20210912130439.png)
-![](https://pic.leizingyiu.net/20210912130529.png)
+![](https://leizingyiu.github.io/AfterEffectsScripts/yiu_bouncer/mdFile/20210912130439.png)
+![](https://leizingyiu.github.io/AfterEffectsScripts/yiu_bouncer/mdFile/20210912130529.png)
 
 ### 取样时间 （路径回弹/路径反弹
 
@@ -68,7 +68,7 @@ Last modified: "2021/10/03 13:51:02"
 而取样时间越短，越接近关键帧时刻的瞬时速度。
 （关于瞬时速度概念，请查阅中学课本）
 
-<video mute autoplay control loop src='http://pic.leizingyiu.net/d_k_change_en.mp4'></video>
+<video mute autoplay control loop src='http://leizingyiu.github.io/AfterEffectsScripts/yiu_bouncer/mdFile/d_k_change_en.mp4'></video>
 
 ### 夸张系数 （路径回弹
 
@@ -76,9 +76,7 @@ Last modified: "2021/10/03 13:51:02"
 譬如取样时间为 1/1000 ，夸张系数则为 1000 ；
 在某些场合需要更夸张的弹性，可修改此系数，直接放大弹性效果。
 
-<video mute autoplay control loop src='http://pic.leizingyiu.net/d001_k_change_en.mp4'></video>
-
-
+<video mute autoplay control loop src='http://leizingyiu.github.io/AfterEffectsScripts/yiu_bouncer/mdFile/d001_k_change_en.mp4'></video>
 
 ### 平滑系数（路径回弹/路径反弹
 
@@ -88,9 +86,7 @@ Last modified: "2021/10/03 13:51:02"
 属性本身已经放大 100 倍，即填入 100 时，属性自动计算为 1 ；
 数值越大，越晚过度到下一关键帧，弹性效果越持久。
 
-<video mute loop autoplay control src='http://pic.leizingyiu.net/easeK_change.mp4'></video>
-
-
+<video mute loop autoplay control src='http://leizingyiu.github.io/AfterEffectsScripts/yiu_bouncer/mdFile/easeK_change.mp4'></video>
 
 ### 平滑开关（路径回弹/路径反弹
 
@@ -105,30 +101,28 @@ Last modified: "2021/10/03 13:51:02"
 物体碰撞时，每次反弹的衰减幅度符合指数函数曲线，  
 默认约为自然对数的底数 0.7 ，
 调整此属性可调整衰减速度；
-![](https://pic.leizingyiu.net/20210912132904.png)
-![](https://pic.leizingyiu.net/20210912132945.png)
+![](https://leizingyiu.github.io/AfterEffectsScripts/yiu_bouncer/mdFile/20210912132904.png)
+![](https://leizingyiu.github.io/AfterEffectsScripts/yiu_bouncer/mdFile/20210912132945.png)
 
 ### 重力
 
 重力控制每次弹起的高度，重力越小，弹起高度越高，每次弹起需要的时间越长。
-![](https://pic.leizingyiu.net/20210912133107.png)
-![](https://pic.leizingyiu.net/20210912133153.png)
+![](https://leizingyiu.github.io/AfterEffectsScripts/yiu_bouncer/mdFile/20210912133107.png)
+![](https://leizingyiu.github.io/AfterEffectsScripts/yiu_bouncer/mdFile/20210912133153.png)
 
 ### 最大碰撞次数
 
 每次产生弹性时的最大碰撞次数。
-![](https://pic.leizingyiu.net/20210912134531.png)
-![](https://pic.leizingyiu.net/20210912134557.png)
+![](https://leizingyiu.github.io/AfterEffectsScripts/yiu_bouncer/mdFile/20210912134531.png)
+![](https://leizingyiu.github.io/AfterEffectsScripts/yiu_bouncer/mdFile/20210912134557.png)
 
 ### 取样时间
 
-与回弹中的取样时间相似，可调节碰撞时的速度值和速度方向  
+与回弹中的取样时间相似，可调节碰撞时的速度值和速度方向
 
 ### 平滑系数 / 平滑开关（路径回弹/路径反弹
 
-与回弹中一样，请查阅上文。  
-
-  
+与回弹中一样，请查阅上文。
 
 ## 版本历史
 

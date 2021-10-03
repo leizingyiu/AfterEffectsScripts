@@ -295,7 +295,7 @@ function getItemInfo(dom, targetFolderName, targetFileName, hideBoo) {
 
     itemVersion = itemVersion.indexOf('latest') != -1 ? 'latest' : itemVersion;
 
-    var itemTargetPath = '../' + itemName + (itemVersion.indexOf('latest') != -1 ? '' : '/versions/' + itemVersion) + '/' + targetFolderName + '/';
+    var itemTargetPath = '../' + (itemName + '/') + (itemVersion.indexOf('latest') != -1 ? '' : 'versions/' + itemVersion + '/') + (targetFolderName == '' ? '' : targetFolderName + '/');
 
     console.log(itemVersion, itemTargetPath);
 
