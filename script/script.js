@@ -4,7 +4,7 @@
 var searchJson = JSON.parse('{"' + String(decodeURIComponent(window.location.search).match(/(?<=\?).*/g)).replace(/&/g, '","').replace(/=/g, '":"').replace(/^null$/, 'lang":"cn') + '"}')
 const jsonToSearch = json => JSON.stringify(json).replace(/(^\{)|(\}$)/g, '').replace(/['"]/g, '').replace(/:/g, '=').replace(/,/g, '&');
 var lang = Object.keys(searchJson).indexOf('lang') != -1 ? searchJson.lang : 'cn';
-
+var rootPath = (location.origin + location.pathname).replace(/\/[^/]*$/g, '/');
 
 document.querySelector('#lang [data-lang=' + lang + ']').classList.add('active');
 [...document.querySelectorAll('#lang [data-lang]')].map(function (dom) {
@@ -53,7 +53,7 @@ loadItems();
 
 function loadItems() {
 
-    fetch('..\\items.json')
+    fetch(rootPath + '\\items.json')
         .then(response => response.json())
         .then(json => getItems(json))
         .then(function () {
@@ -87,7 +87,7 @@ async function getItem(name) {
 
     console.trace()
 
-    fetch('..\\' + name + '\\item.json')
+    fetch(rootPath + '\\' + name + '\\item.json')
         .then(response => response.ok == true ? response.json() : '')
         .then(function (json) {
             if (json == '') { return json };
@@ -295,7 +295,7 @@ function getItemInfo(dom, targetFolderName, targetFileName, hideBoo) {
 
     itemVersion = itemVersion.indexOf('latest') != -1 ? 'latest' : itemVersion;
 
-    var itemTargetPath = '../' + (itemName + '/') + (itemVersion.indexOf('latest') != -1 ? '' : 'versions/' + itemVersion + '/') + (targetFolderName == '' ? '' : targetFolderName + '/');
+    var itemTargetPath = rootPath + '/' + (itemName + '/') + (itemVersion.indexOf('latest') != -1 ? '' : 'versions/' + itemVersion + '/') + (targetFolderName == '' ? '' : targetFolderName + '/');
 
     console.log(itemVersion, itemTargetPath);
 

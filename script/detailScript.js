@@ -11,6 +11,7 @@ var detail = Object.keys(searchJson).indexOf('detail') != -1 ? searchJson.detail
 var version = Object.keys(searchJson).indexOf('version') != -1 ? searchJson.version : '';
 version = version.indexOf('latest') != -1 ? '' : version;
 
+var rootPath = (location.origin + location.pathname).replace(/\/[^/]*$/g, '/');
 var errorText = {
     "mdError": {
         "cn": "唔好意思，揾唔到尼个页面！\n不好意思，找不到这个页面！",
@@ -38,7 +39,7 @@ getMd(detail, version, lang);
 function getDescribe(name, version = '') {
     // console.log(name);
     if (version == '') {
-        fetch('..\\' + name + '\\item.json')
+        fetch(rootPath + '\\' + name + '\\item.json')
             .then(response => response.ok == true ? response.json() : '')
             .then(function (json) {
                 if (json == '') { return json };
@@ -60,14 +61,14 @@ function getDescribe(name, version = '') {
             })
             .then(mainSetting)
     } else {
-        fetch('..\\' + name + '\\item.json')
+        fetch(rootPath + '\\' + name + '\\item.json')
             .then(response => response.ok == true ? response.json() : '')
             .then(function (json) {
                 if (json == '') { return json };
 
                 var scriptVersion = json.scriptVersions.map(ver => ver.h1 == version ? ver : false).filter(Boolean);
                 scriptVersion = scriptVersion.length >= 1 ? scriptVersion[0] : '';
-                //                if (scriptVersion == '') { window.location = '..'; }
+                //                if (scriptVersion == '') { window.location = rootPath + ''; }
 
                 console.log(scriptVersion);
 
@@ -91,13 +92,13 @@ function getDescribe(name, version = '') {
 }
 function getMd(name, version = '', lang) {
     var versionPath = version == '' ? '' : '\\versions\\' + version;
-    fetch('..\\' + name + versionPath + '\\detail_' + lang + '.md')
+    fetch(rootPath + '\\' + name + versionPath + '\\detail_' + lang + '.md')
         .then(function (response) {
             if (response.ok) {
                 return response.text();
             } else {
                 document.getElementById('content').innerHTML = `<h1>` + errorText.mdError[lang] + `</h1>
-                <p>`+ '..\\' + name + versionPath + '\\detail_' + lang + '.md' + `</p>`;
+                <p>`+ rootPath + '\\' + name + versionPath + '\\detail_' + lang + '.md' + `</p>`;
             }
         })
         .then(function (txt) {
@@ -185,7 +186,7 @@ function getItemInfo(dom, targetFolderName, targetFileName, hideBoo) {
     let itemVersion = version;
     //console.log(domOrigin, dom);
     var itemName = detail;
-    var itemTargetPath = '../' + itemName + (itemVersion == '' ? '' : '/versions/' + itemVersion) + '/' + targetFolderName + '/';
+    var itemTargetPath = rootPath + '/' + itemName + (itemVersion == '' ? '' : '/versions/' + itemVersion) + '/' + targetFolderName + '/';
 
     dom = domOrigin;
 
