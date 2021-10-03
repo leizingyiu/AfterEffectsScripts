@@ -53,7 +53,7 @@ loadItems();
 
 function loadItems() {
 
-    fetch('..\\items.json')
+    fetch(location.origin+location.pathname+'\items.json')
         .then(response => response.json())
         .then(json => getItems(json))
         .then(function () {
@@ -295,7 +295,7 @@ function getItemInfo(dom, targetFolderName, targetFileName, hideBoo) {
 
     itemVersion = itemVersion.indexOf('latest') != -1 ? 'latest' : itemVersion;
 
-    var itemTargetPath = '../' + (itemName + '/') + (itemVersion.indexOf('latest') != -1 ? '' : 'versions/' + itemVersion + '/') + (targetFolderName == '' ? '' : targetFolderName + '/');
+    var itemTargetPath = location.origin+location.pathname+'/' + (itemName + '/') + (itemVersion.indexOf('latest') != -1 ? '' : 'versions/' + itemVersion + '/') + (targetFolderName == '' ? '' : targetFolderName + '/');
 
     console.log(itemVersion, itemTargetPath);
 
