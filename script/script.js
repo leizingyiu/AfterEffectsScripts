@@ -1,5 +1,5 @@
 /**
-Last modified: "2021/10/04 15:15:23"
+Last modified: "2021/10/04 15:18:36"
  */
 // console.log('main script');
 //console.warn = () => { };
@@ -184,7 +184,7 @@ function mainSetting() {
 
                 console.log('click panel');
                 searchJson.detail = itemName;
-                window.location = window.location.origin + '/detail.html' + '?' + jsonToSearch(searchJson);
+                window.location = rootPath + '/detail.html' + '?' + jsonToSearch(searchJson);
             } else {
                 downloadClick = false;
             }
