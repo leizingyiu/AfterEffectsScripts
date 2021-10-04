@@ -1,0 +1,228 @@
+.markdown-body * {
+  margin: 0;
+  padding: 0;
+}
+.markdown-body body {
+  font: 13.34px helvetica, arial, freesans, clean, sans-serif;
+  color: black;
+  line-height: 1.4em;
+  background-color: #f8f8f8;
+  padding: 0.7em;
+}
+.markdown-body p {
+  margin: 0 0 2em;
+  line-height: 2em;
+  display: block;
+}
+.markdown-body small{
+  font-size: 0.5em;
+  opacity: 0.5!important;
+}
+.markdown-body small>*,
+.markdown-body small *{
+  font-size: inherit;
+}
+.markdown-body table {
+  font-size: inherit;
+  font: 100%;
+  margin: 1em;
+}
+.markdown-body table th {
+  border-bottom: 1px solid #bbb;
+  padding: 0.2em 1em;
+}
+.markdown-body table td {
+  border-bottom: 1px solid #ddd;
+  padding: 0.2em 1em;
+}
+.markdown-body input[type="text"],
+.markdown-body input[type="password"],
+.markdown-body input[type="image"],
+.markdown-body textarea {
+  font: 99% helvetica, arial, freesans, sans-serif;
+}
+.markdown-body select,
+.markdown-body option {
+  padding: 0 0.25em;
+}
+.markdown-body optgroup {
+  margin-top: 0.5em;
+}
+.markdown-body pre,
+.markdown-body code {
+  font: 12px Menlo, Monaco, "DejaVu Sans Mono", "Bitstream Vera Sans Mono",
+    monospace;
+}
+.markdown-body pre {
+  margin: 1em 0;
+  font-size: 12px;
+  background-color: #eee;
+  border: 1px solid #ddd;
+  padding: 5px;
+  line-height: 1.5em;
+  color: #444;
+  overflow: auto;
+  box-shadow: rgba(0, 0, 0, 0.07) 0 1px 2px inset;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+}
+.markdown-body pre code {
+  padding: 0;
+  font-size: 12px;
+  background-color: #eee;
+  border: none;
+}
+.markdown-body code {
+  font-size: 12px;
+  background-color: #f8f8ff;
+  color: #444;
+  padding: 0 0.2em;
+  border: 1px solid #dedede;
+}
+.markdown-body img {
+  border: 0;
+  max-width: 100%;
+}
+.markdown-body abbr {
+  border-bottom: none;
+}
+.markdown-body a {
+  color: #4183c4;
+  text-decoration: none;
+}
+.markdown-body a:hover {
+  text-decoration: underline;
+}
+.markdown-body a code,
+.markdown-body a:link code,
+.markdown-body a:visited code {
+  color: #4183c4;
+}
+.markdown-body h2,
+.markdown-body h3 {
+  margin: 1em 0;
+}
+/* .markdown-body h1,
+.markdown-body h2,
+.markdown-body h3,
+.markdown-body h4,
+.markdown-body h5,
+.markdown-body h6 {
+  border: 0;
+} */
+.markdown-body h1 {
+  font-size: 200%;
+  font-weight: 300;
+  line-height: 1.5em;
+  letter-spacing: 0.025em;
+  word-spacing: 0.1em;
+  padding: 0.5em 0;
+  margin: 2em 0 0.5em;
+
+  display: inline-block;
+  position: relative;
+}
+
+.markdown-body h1:first-child {
+  margin-top: 0;
+  padding-top: 0!important;
+}
+/* .markdown-body h1:first-of-type {
+  margin: 0;
+  padding-top: 0!important;
+  border: none;
+} */
+
+.markdown-body h2 {
+  font-size: 150%;
+  margin-top: 1.5em;
+  /* border-top: 2px solid #eee; */
+  padding-top: 1em;
+
+  display: inline-block;
+  position: relative;
+}
+.markdown-body h3 {
+  margin-top: 1em;
+}
+.markdown-body hr {
+  border: 1px solid #ddd;
+  display: block;
+}
+.markdown-body ul {
+  margin: 1em 0 1em 2em;
+}
+.markdown-body ol {
+  margin: 1em 0 1em 2em;
+}
+.markdown-body ul li,
+.markdown-body ol li {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+.markdown-body ul ul,
+.markdown-body ul ol,
+.markdown-body ol ol,
+.markdown-body ol ul {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+.markdown-body blockquote {
+  margin: 1em 0;
+  border-left: 5px solid #ddd;
+  padding-left: 0.6em;
+  color: #555;
+}
+.markdown-body dt {
+  font-weight: bold;
+  margin-left: 1em;
+}
+.markdown-body dd {
+  margin-left: 2em;
+  margin-bottom: 1em;
+}
+.markdown-body sup {
+  font-size: 0.83em;
+  vertical-align: super;
+  line-height: 0;
+}
+.markdown-body * {
+  -webkit-print-color-adjust: exact;
+}
+
+
+.markdown-body h6{
+  margin-top:1em!important;
+  font-weight:500;
+}
+.markdown-body blockquote{
+margin-top:1em!important;
+margin-bottom:1em!important;
+}
+.markdown-body img{
+margin-bottom:1em!important;
+}
+.markdown-body pre{
+  word-wrap: break-word;
+  padding:1em;  
+}
+.markdown-body pre code{
+  line-height: 1.75em;
+}
+
+@media screen and (min-width: 914px) {
+  .markdown-body body {
+    width: 854px;
+    margin: 0 auto;
+  }
+}
+@media print {
+  .markdown-body table,
+  .markdown-body pre {
+    page-break-inside: avoid;
+  }
+  .markdown-body pre {
+    word-wrap: break-word;
+  }
+}
