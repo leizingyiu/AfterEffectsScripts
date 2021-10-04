@@ -84,6 +84,7 @@ async function getItems(json) {
 
 async function getItem(name) {
     console.log('getItem: ' + name);
+    console.log(rootPath + '\\' + name + '\\item.json');
 
     console.trace()
 
