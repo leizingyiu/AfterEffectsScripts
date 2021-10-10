@@ -1,12 +1,14 @@
 /**
-Last modified: "2021/10/04 16:07:54"
+Last modified: "2021/10/10 12:50:53"
  */
 // console.log('main script');
 //console.warn = () => { };
-console.log = function () { return void 0; }
+//console.log = function () { return void 0; }
 
 var searchJson = JSON.parse('{"' + String(decodeURIComponent(window.location.search).match(/(?<=\?).*/g)).replace(/&/g, '","').replace(/=/g, '":"').replace(/^null$/, 'lang":"cn') + '"}')
+
 const jsonToSearch = json => JSON.stringify(json).replace(/(^\{)|(\}$)/g, '').replace(/['"]/g, '').replace(/:/g, '=').replace(/,/g, '&');
+
 var lang = Object.keys(searchJson).indexOf('lang') != -1 ? searchJson.lang : 'cn';
 var rootPath = (location.origin + location.pathname).replace(/\/[^/]*$/g, '/');
 
@@ -18,7 +20,30 @@ document.querySelector('#lang [data-lang=' + lang + ']').classList.add('active')
     }, false);
 })
 
-
+var langText = {
+    "copied": {
+        "cn": "内容已复制到剪贴板",
+        "en": " has been copied to the clipboard"
+    },
+    "goto": {
+        "cn": "正在前往",
+        "en": "Going to "
+    },
+    "altGoto": {
+        "cn": "点击前往 ",
+        "en": "Click to go to "
+    },
+    "diskName": {
+        "baidu": {
+            "cn": "百度网盘",
+            "en": "Baidu cloud disk"
+        },
+        "ctfile": {
+            "cn": "城通网盘",
+            "en": "CTDISK"
+        }
+    }
+}
 
 
 
@@ -98,6 +123,9 @@ async function getItem(name) {
             if (json == '') { return json };
 
             var li = document.createElement('li');
+            var downloadTargetName = Object.keys(json.scriptDescribe).indexOf('download') != -1 ? Object.keys(json.scriptDescribe.download)[0] : null;
+            console.log(downloadTargetName);
+            console.log(langText.diskName[downloadTargetName]);
             li.className = 'item';
             li.setAttribute('item', json.scriptDescribe.h1);
             li.innerHTML = `<dl class="scriptDescribe panel">
@@ -105,7 +133,15 @@ async function getItem(name) {
                                     <h1>`+ json.scriptDescribe.h1 + `</h1>
                                     <div>
                                         <p> <span>`+ json.scriptDescribe.span[lang] + `</span> <a  class="readmore">readmore</a></p>
-                                        <a class="download" href="javascript:void 0;">download</a>
+                                        <a class="download" `+
+                (Object.keys(json.scriptDescribe).indexOf('download') != -1 ? (
+                    `href="` + json.scriptDescribe.download[downloadTargetName].link + `"` +
+                    ` onclick="copyStr(` +
+                    `'` + json.scriptDescribe.download[downloadTargetName].copy + `',` +
+                    `'` + langText.copied[lang] + `',` +
+                    `'` + langText.goto[lang] + ` ` + downloadTargetName + `')" ` +
+                    ` alt='` + langText.altGoto[lang] + langText.diskName[downloadTargetName][lang] + `'`
+                ) : 'href="javascript:void 0;"') + `>download</a>
                                     </div>
                                 </dt>
                                 <dd>`+ (Object.keys(json.scriptDescribe).indexOf('img') != -1 ? (`<img src='` + json.scriptDescribe.img + `' />`) : '') + `</dd>
@@ -125,7 +161,15 @@ async function getItem(name) {
                                                 <p><span>`+ ver.span[lang] + `</span><a class="readmore">readmore</a>
 
                                                 </p>
-                                                <a class="download" href="javascript:void 0 ;">download</a>
+                                                <a class="download" `+
+                    (Object.keys(ver).indexOf('download') != -1 ? (
+                        `href="` + ver.download[Object.keys(ver.download)[0]].link + `"` +
+                        ` onclick="copyStr(` +
+                        `'` + ver.download[Object.keys(ver.download)[0]].copy + `',` +
+                        `'` + langText.copied[lang] + `',` +
+                        `'` + langText.goto[lang] + Object.keys(ver.download)[0] + `')" ` +
+                        ` alt='` + langText.altGoto[lang] + langText.diskName[Object.keys(ver.download)[0]][lang] + `'`
+                    ) : 'href="javascript:void 0;"') + `>download</a>
                                             </div>
                                         </dt>
                                         <dd>`+ (Object.keys(ver).indexOf('img') != -1 ? (`<img src='` + ver.img + `' />`) : '') + `</dd>
@@ -140,12 +184,13 @@ async function getItem(name) {
                                         <p><span>`+ json.scriptDescribe.version.span[lang] + `</span><a class="readmore">readmore</a>
 
                                         </p>
-                                        <a class="download" href="javascript:void 0 ;">download</a>
+                                        `+ li.querySelector('a.download').outerHTML + `
                                     </div>
                                 </dt>
                                 <dd>`+ (Object.keys(json.scriptDescribe.version).indexOf('img') != -1 ? (`<img src='` + json.scriptDescribe.version.img + `' />`) : '') + `</dd>
                             </dl>`;
             li.querySelector('.scriptVersions').insertBefore(latestLi, li.querySelector('.scriptVersions').firstChild);
+
 
             return json;
         })
@@ -238,14 +283,17 @@ function mainSetting() {
 
         dom.addEventListener('click', function (e) {
             downloadClick = true;
-            console.log('click download');
+            //console.log('click download');
 
             // console.log(e);
             // console.log(this);
             // console.log([itemName, itemVersion, itemDownloadPath]);
             // console.log('______');
 
-
+            if (eval(this.getAttribute('href')) != undefined) {
+                window.location = this.getAttribute('href');
+                return;
+            }
             fetch(itemDownloadPath + 'downloadList.json')
                 .then(response => response.json())
                 .then(json => json.map(j => ({ "name": j, "url": itemDownloadPath + j })))
@@ -276,7 +324,7 @@ function mainSetting() {
     });
 
     const imgHostUrl = 'pic.leizingyiu.net';
-    [...document.querySelectorAll('img').map(function (dom) {
+    [...document.querySelectorAll('img')].map(function (dom) {
         if (dom.getAttribute('alreadySet') == 'true') { return void 0; }
 
         if (rootPath.indexOf('github.io') != -1 || rootPath.indexOf('gitee.io') != -1) {
@@ -284,7 +332,7 @@ function mainSetting() {
         }
 
         dom.setAttribute('alreadySet', 'true');
-    })]
+    })
 }
 
 function getItemInfo(dom, targetFolderName, targetFileName, hideBoo) {
@@ -314,22 +362,37 @@ function getItemInfo(dom, targetFolderName, targetFileName, hideBoo) {
 
     console.log(itemVersion, itemTargetPath);
 
-
+    var result = { "itemName": itemName, "itemVersion": itemVersion, "itemTargetPath": itemTargetPath };
 
 
     try {
-        fetch(itemTargetPath + targetFileName)
-            .then(function (response) {
-                if (!response.ok && hideBoo) {
-                    dom.parentElement.removeChild(dom);
-                }
-            })
+        if (targetFolderName == 'download' && eval(parDom.querySelector('.download').innerText) != undefined) {
+            return result;
+        } else {
+            fetch(itemTargetPath + targetFileName)
+                .then(function (response) {
+                    if (!response.ok && hideBoo) {
+                        dom.parentElement.removeChild(dom);
+                    }
+                });
+        }
     } catch (err) { void 0; }
 
     //console.log(itemName, itemVersion, itemTargetPath);
 
-    return { "itemName": itemName, "itemVersion": itemVersion, "itemTargetPath": itemTargetPath };
+    return result;
 }
 
 
 
+
+function copyStr(copyStr, checkStr = '内容已复制到剪贴板', alertStr = "") {
+    var a = document.createElement("textarea");
+    a.value = copyStr;
+    document.body.appendChild(a);
+    a.select();
+    document.execCommand("Copy");
+    a.className = "oInput";
+    a.style.display = "none";
+    alert(copyStr + ' <= ' + checkStr + " \n" + alertStr)
+}

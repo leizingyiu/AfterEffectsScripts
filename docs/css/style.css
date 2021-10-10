@@ -282,10 +282,42 @@ dl.scriptVersion>dt>div>a.download {
   border: solid 1px var(--text-color);
   height: 100%;
   margin-top: calc((var(--line-height) - 1em) / 2);
+  position: relative;
+  z-index: 999;
 }
+
+a.download[alt]{
+  box-shadow: 0 0 4px var(--bg-color);
+  transition: box-shadow 0.2s ease;
+}
+a.download[alt]:hover{
+  box-shadow: 0 4px 8px var(--bg-color);
+}
+
+a.download[alt]::before {
+  content: attr(alt);
+  position: absolute;
+  font-size: 0.8em;
+  padding: 0.5em;
+  left: 0;
+  bottom: -4px;
+  /* width: 200%; */
+  transform: translate(0, 0);
+  opacity: 0;
+  transition:all 0.2s ease;
+  background: var(--panel-color);
+  box-shadow: inherit;
+}
+a.download[alt]:hover::before {
+  box-shadow: inherit;
+  transform: translate(0, 100%);
+  opacity: 1;
+}
+
 
 dl.scriptVersion dd>img{
   max-height: 150px;
+  max-width: 100%;
 }
 
 a.readmore{
@@ -293,6 +325,13 @@ a.readmore{
 }
 
 /* detail page */
+.detailPage dl.scriptDescribe>dt>div>p span{
+height: auto!important;
+text-align: left;
+}
+.detailPage dl.scriptDescribe>dt>div>p span::after{
+  display: none;
+}
 #content{
   display: block;
   width: 100%;
@@ -321,6 +360,22 @@ box-sizing:border-box;
 letter-spacing: 0.1em;
 }
 
+#content .downloadBlock{
+  padding: 1em;
+}
+#content .downloadBlock ul{
+  text-align: center;
+  margin: 0 !important;
+}
+#content .downloadBlock ul li{
+display: inline-block;
+
+margin: 0 1em;
+}
+#content .downloadBlock ul li a{
+  padding: 1em;
+  line-height: 4em;
+}
 @media screen and (max-width: 800px) {
   .item {
     display: block;
@@ -329,7 +384,7 @@ letter-spacing: 0.1em;
   .item>*:first-child {
     margin-right: 0;
     max-width: none;
-    width: 100%;
+    /* width: 100%; */
   }
 
   dl.scriptDescribe>dd>img {

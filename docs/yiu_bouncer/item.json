@@ -6,7 +6,17 @@
             "en": "Create elasticity for the keyframe animation of selected properties, including common numeric properties, or path properties."
         },
         "img": "https://pic.leizingyiu.net/00_yiu_bouncer_cover.png",
-        
+        "download":{
+            "baidu":{
+                "link":"https://pan.baidu.com/s/1DnzJGk8OMbc9gHPdJfcmwg",
+                "/link":"javascript:1;",
+                "copy":"4tig"
+            },
+            "ctfile":{
+                "link":"https://url60.ctfile.com/d/30926760-45253529-92c1c3",
+                "copy":"280347"
+            }
+        },
         "version": {
             "h1": "v1.1",
             "span": {
@@ -24,6 +34,16 @@
             "en": "Release scripts to support the rebound and rebound of paths and digital attributes; when the path rebounds, support smoothing to the next key frame"
         },
         "//img": "https://via.placeholder.com/160x90.png",
-        "date": "2021-09-12"
+        "date": "2021-09-12",
+        "download":{
+            "baidu":{
+                "link":"https://pan.baidu.com/s/1NjnT6GGng60Wrd3fr7YJsA",
+                "copy":"fpy6"
+            },
+            "ctfile":{
+                "link":"https://url60.ctfile.com/d/30926760-45254588-938cfd",
+                "copy":"280347"
+            }
+        }
     }]
 }
