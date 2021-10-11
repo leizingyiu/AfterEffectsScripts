@@ -1,11 +1,12 @@
 /**
-Last modified: "2021/10/10 12:50:53"
+Last modified: "2021/10/11 21:50:48"
  */
 // console.log('main script');
 //console.warn = () => { };
 //console.log = function () { return void 0; }
+import './polyfill.min.js';
 
-var searchJson = JSON.parse('{"' + String(decodeURIComponent(window.location.search).match(/(?<=\?).*/g)).replace(/&/g, '","').replace(/=/g, '":"').replace(/^null$/, 'lang":"cn') + '"}')
+var searchJson = JSON.parse('{"' + String(decodeURIComponent(window.location.search).match(/(?:\?).*/g)).replace(/&/g, '","').replace(/=/g, '":"').replace(/^null$/, 'lang":"cn') + '"}')
 
 const jsonToSearch = json => JSON.stringify(json).replace(/(^\{)|(\}$)/g, '').replace(/['"]/g, '').replace(/:/g, '=').replace(/,/g, '&');
 

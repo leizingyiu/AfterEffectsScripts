@@ -1,10 +1,11 @@
 /**
-Last modified: "2021/10/10 14:41:01"
+Last modified: "2021/10/11 22:06:00"
  */
 //console.log('run detail script');
 //console.log = function () { return void 0; }
+import './polyfill.min.js';
 
-var searchJson = JSON.parse('{"' + String(decodeURIComponent(window.location.search).match(/(?<=\?).*/g)).replace(/&$/, '').replace(/&/g, '","').replace(/=/g, '":"').replace(/^null$/, 'lang":"cn') + '"}')
+var searchJson = JSON.parse('{"' + String(decodeURIComponent(window.location.search).match(/(?:\?).*/g)).replace(/&$/, '').replace(/&/g, '","').replace(/=/g, '":"').replace(/^null$/, 'lang":"cn') + '"}')
 const jsonToSearch = json => JSON.stringify(json).replace(/(^\{)|(\}$)/g, '').replace(/['"]/g, '').replace(/:/g, '=').replace(/,/g, '&');
 
 var lang = Object.keys(searchJson).indexOf('lang') != -1 ? searchJson.lang : 'cn';
