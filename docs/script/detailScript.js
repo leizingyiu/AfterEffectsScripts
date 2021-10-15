@@ -1,5 +1,5 @@
 /**
-Last modified: "2021/10/11 22:06:00"
+Last modified: "2021/10/15 13:00:06"
  */
 //console.log('run detail script');
 //console.log = function () { return void 0; }
@@ -104,13 +104,13 @@ function getDescribe(name, version = '') {
                                     <p> <span>`+ target.span[lang] + `</span></p>
                                     <a class="download" `+
                 (Object.keys(target).indexOf('download') != -1 ? (
-                    `href="` + target.download[downloadTargetName].link + `"` +
-                    ` onclick="copyStr(` +
+                    `link="` + target.download[downloadTargetName].link + `"` +
+                    ` click="copyStr(` +
                     `'` + target.download[downloadTargetName].copy + `',` +
                     `'` + langText.copied[lang] + `',` +
                     `'` + langText.goto[lang] + ` ` + downloadTargetName + `')" ` +
                     ` alt='` + langText.altGoto[lang] + langText.diskName[downloadTargetName][lang] + `'`
-                ) : 'href="javascript:void 0;"') + `>download</a>
+                ) : 'link="javascript:void 0;"') + `  href="javascript:void 0;" >download</a>
                                 </div>
                             </dt>
                             <dd><img src='`+ target.img + `' /></dd>
@@ -209,12 +209,13 @@ function getDownloadDetail(name, version = '', lang) {
                     let li = document.createElement('li');
                     let a = document.createElement('a');
                     a.innerText = langText.altGoto[lang] + key;
-                    a.onclick = function () {
+                    a.click = function () {
                         copyStr(downloadObj[key].copy,
                             langText.copied[lang],
                             langText.goto[lang]);
                     };
-                    a.href = downloadObj[key].link;
+                    a.link = downloadObj[key].link;
+                    a.href = 'javascript:void 0;'
                     a.setAttribute('alt', langText.altGoto[lang] + langText.diskName[key][lang])
                     ul.appendChild(li);
                     li.appendChild(a);
@@ -239,6 +240,9 @@ function mainSetting() {
 
     [...document.querySelectorAll('.download')].map(function (dom) {
 
+        if (dom.getAttribute('alreadySet') == 'true') { return void 0; }
+
+
         var itemInfo = getItemInfo(dom, 'download', 'downloadList.json', true);
         var itemName = itemInfo.itemName,
             itemVersion = itemInfo.itemVersion,
@@ -257,6 +261,17 @@ function mainSetting() {
             // console.log('______');
 
             //console.log(itemDownloadPath + 'downloadList.json');
+
+
+            if (this.getAttribute('click') != null) {
+                eval(this.getAttribute('click'));
+            }
+            if (this.getAttribute('link') != null || (this.getAttribute('link').indexOf('http') != -1)) {
+                window.location = this.getAttribute('link');
+                return;
+            }
+
+
             itemVersion = itemVersion == "" ? "latest" : itemVersion;
             fetch(itemDownloadPath + 'downloadList.json')
                 .then(response => response.json())
@@ -285,7 +300,7 @@ function mainSetting() {
 
         }, false);
 
-
+        dom.setAttribute('alreadySet', 'true');
     });
 }
 
@@ -316,6 +331,7 @@ function getItemInfo(dom, targetFolderName, targetFileName, hideBoo) {
 }
 
 function copyStr(copyStr, checkStr = '内容已复制到剪贴板', alertStr = "") {
+    console.trace();
     var a = document.createElement("textarea");
     a.value = copyStr;
     document.body.appendChild(a);

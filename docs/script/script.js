@@ -1,5 +1,5 @@
 /**
-Last modified: "2021/10/11 21:50:48"
+Last modified: "2021/10/15 12:54:51"
  */
 // console.log('main script');
 //console.warn = () => { };
@@ -136,13 +136,13 @@ async function getItem(name) {
                                         <p> <span>`+ json.scriptDescribe.span[lang] + `</span> <a  class="readmore">readmore</a></p>
                                         <a class="download" `+
                 (Object.keys(json.scriptDescribe).indexOf('download') != -1 ? (
-                    `href="` + json.scriptDescribe.download[downloadTargetName].link + `"` +
-                    ` onclick="copyStr(` +
+                    `link="` + json.scriptDescribe.download[downloadTargetName].link + `"` +
+                    ` click="copyStr(` +
                     `'` + json.scriptDescribe.download[downloadTargetName].copy + `',` +
                     `'` + langText.copied[lang] + `',` +
                     `'` + langText.goto[lang] + ` ` + downloadTargetName + `')" ` +
                     ` alt='` + langText.altGoto[lang] + langText.diskName[downloadTargetName][lang] + `'`
-                ) : 'href="javascript:void 0;"') + `>download</a>
+                ) : ' link="javascript:void 0;"') + `  href="javascript:void 0;">download</a>
                                     </div>
                                 </dt>
                                 <dd>`+ (Object.keys(json.scriptDescribe).indexOf('img') != -1 ? (`<img src='` + json.scriptDescribe.img + `' />`) : '') + `</dd>
@@ -164,13 +164,13 @@ async function getItem(name) {
                                                 </p>
                                                 <a class="download" `+
                     (Object.keys(ver).indexOf('download') != -1 ? (
-                        `href="` + ver.download[Object.keys(ver.download)[0]].link + `"` +
-                        ` onclick="copyStr(` +
+                        `link="` + ver.download[Object.keys(ver.download)[0]].link + `"` +
+                        ` click="copyStr(` +
                         `'` + ver.download[Object.keys(ver.download)[0]].copy + `',` +
                         `'` + langText.copied[lang] + `',` +
                         `'` + langText.goto[lang] + Object.keys(ver.download)[0] + `')" ` +
                         ` alt='` + langText.altGoto[lang] + langText.diskName[Object.keys(ver.download)[0]][lang] + `'`
-                    ) : 'href="javascript:void 0;"') + `>download</a>
+                    ) : 'link="javascript:void 0;"') + `  href="javascript:void 0;">download</a>
                                             </div>
                                         </dt>
                                         <dd>`+ (Object.keys(ver).indexOf('img') != -1 ? (`<img src='` + ver.img + `' />`) : '') + `</dd>
@@ -291,8 +291,11 @@ function mainSetting() {
             // console.log([itemName, itemVersion, itemDownloadPath]);
             // console.log('______');
 
-            if (eval(this.getAttribute('href')) != undefined) {
-                window.location = this.getAttribute('href');
+            if (this.getAttribute('click') != null) {
+                eval(this.getAttribute('click'));
+            }
+            if (this.getAttribute('link') != null || (this.getAttribute('link').indexOf('http') != -1)) {
+                window.location = this.getAttribute('link');
                 return;
             }
             fetch(itemDownloadPath + 'downloadList.json')
